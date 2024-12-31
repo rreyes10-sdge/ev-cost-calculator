@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>EV Cost Calculator</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <h1 class="fs-header">EV Cost Calculator</h1>
+    <form id="msform" action="/" method="post">
+        <!-- progressbar -->
+        <ul id="progressbar">
+            <li class="active">Vehicle Selection</li>
+            <li>Charging Behavior</li>
+            <li>Charger Selection</li>
+            <li>Time of Year</li>
+        </ul>
+        <button type="button" id="clearButton" onclick="clearForm()" style="display:none;">Clear</button>
+        <!-- fieldsets -->
+        <fieldset id="vehicleSelection">
+            <h2 class="fs-title">Vehicle Selection</h2>
+            <h3 class="fs-subtitle">Set vehicle parameters</h3>
+            <input type="number" name="num_vehicles" placeholder="Number of Vehicles" min="1" required />
+            <input type="number" name="miles_driven_per_day" placeholder="Miles Driven Per Day" min="1" step="any" required />
+            <input type="number" name="battery_size" step="any" placeholder="Vehicle Battery Size" min="1" required />
+            <input type="number" name="vehicle_efficiency" step="any" placeholder="Vehicle Efficiency" min="0.01" required />
+            <input type="button" id="nextVehicleSelection" class="next action-button" value="Next" disabled />
+            <div id="errorBanner" style="display:none; color:red;"></div>
+        </fieldset>
+        <fieldset id="chargingBehavior">
+            <h2 class="fs-title">Charging Behavior</h2>
+            <h3 class="fs-subtitle">Specify charger information</h3>
+            <input type="number" name="charging_hours_per_day" min="1" max="24" placeholder="Charging Hours Per Day" required />
+            <input type="number" name="charging_days_per_week" step="any" min="1" max="7" placeholder="Charging Days Per Week" required />
+            <input type="button" name="previous" class="previous action-button" value="Back" />
+            <input type="button" id="nextChargingBehavior" class="next action-button" value="Next" disabled />
+        </fieldset>
+        <fieldset id="chargerSelection">
+            <h2 class="fs-title">Charger Selection</h2>
+            <h3 class="fs-subtitle">Select Charger Type and specify the count for each type</h3>
+            <div class="charger-selection-container" id="charger-container">
+                <!-- <div class="charger-entry">
+                    <select name="charger_type_id[]" placeholder="Select Charger Type">
+                        <option value="" disabled selected>-- Select Charger Type --</option>
+                        {% for charger in charger_types %}
+                        <option value="{{ charger.charger_type_id }}">{{ charger.type }} - {{ charger.rating_kW }} kW</option>
+                        {% endfor %}
+                    </select>
+                    <input type="number" name="charger_count[]" min="1" placeholder="Count of Charger" required>
+                </div> -->
+            </div>
+            <button type="button" class="secondary-button" onclick="addCharger()">Add Another Charger</button><br>
+            <input type="button" name="previous" class="previous action-button" value="Back" />
+            <input type="button" name="nextChargerSelection" class="next action-button" value="Next" />
+        </fieldset>
+        <fieldset id="timeOfYear">
+            Season: <select name="season">
+                <option value="Summer">Summer: June 1 - October 31</option>
+                <option value="Winter (March and April)">Winter: March 1 - April 30)</option>
+                <option value="Winter (excluding March and April)">Winter: Nov 1 - Feb 29, May 1 - May 30</option>
+            </select><br>
+            Time of Day: <select name="time_of_day">
+                <option value="SOP">Super Off-Peak</option>
+                <option value="Off-Peak">Off-Peak</option>
+                <option value="On-Peak">On-Peak</option>
+            </select><br>
+            <input type="button" name="previous" class="previous action-button" value="Back" />
+            <button type="submit" class="submit action-button">Calculate</button>
+        </fieldset>
+    </form>
+
+
+    <script>
+        function addCharger() {
+            // Clone the first charger entry
+            var original = document.querySelector('.charger-entry');
+            var clone = original.cloneNode(true); // true means clone all child nodes and event handlers
+
+            // Clear the input values in the clone
+            clone.querySelectorAll('input').forEach(input => input.value = '');
+
+            // Append the clone to the charger container
+            document.getElementById('charger-container').appendChild(clone);
+        }
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const chargerContainer = document.getElementById('charger-container');
+            let chargerIndex = 1; // Initialize charger index counter
+
+            window.addCharger = function() {
+                const div = document.createElement('div');
+                div.className = 'charger-entry';
+                div.innerHTML = `
+                    <hr> <!-- Visual separator -->
+                    <br>
+                    <label>${chargerIndex}. Charger Type and Count:</label>
+                    <select name="charger_type_id[]">
+                        <option value="" disabled selected>-- Select Charger Type --</option>
+                        <!-- Dynamically populated options -->
+                        {% for charger in charger_types %}
+                        <option value="{{ charger.charger_type_id }}">{{ charger.type }} - {{ charger.rating_kW }} kW</option>
+                        {% endfor %}
+                    </select>
+                    <input type="number" name="charger_count[]" min="1" placeholder="Count of Charger" required>
+                `;
+                chargerContainer.appendChild(div);
+                chargerIndex++; // Increment charger index each time a new charger is added
+            };
+
+            // Optionally pre-populate the first charger entry
+            addCharger();  // This call will add the first charger input on page load
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Function to check a fieldset's inputs for validity
+            function checkInputsValidity(fieldsetId, nextButtonId) {
+                const inputs = document.querySelectorAll(`#${fieldsetId} input, #${fieldsetId} select`);
+                const nextButton = document.getElementById(nextButtonId);
+
+                // Check every input's validity within the fieldset
+                let allValid = true;
+                inputs.forEach(input => {
+                    if (!input.checkValidity()) {
+                        allValid = false;
+                    }
+                });
+
+                // Enable or disable the "Next" button based on the validity of inputs
+                nextButton.disabled = !allValid;
+            }
+
+            // Call this function on input changes for each fieldset
+            document.querySelectorAll('#vehicleSelection input, #vehicleSelection select').forEach(input => {
+                input.addEventListener('input', () => checkInputsValidity('vehicleSelection', 'nextVehicleSelection'));
+            });
+
+            document.querySelectorAll('#chargingBehavior input, #chargingBehavior select').forEach(input => {
+                input.addEventListener('input', () => checkInputsValidity('chargingBehavior', 'nextChargingBehavior'));
+            });
+
+            // Initial check in case of any pre-filled values (e.g., from local storage)
+            checkInputsValidity('vehicleSelection', 'nextVehicleSelection');
+            checkInputsValidity('chargingBehavior', 'nextChargingBehavior');
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            function validateFieldset(fieldset) {
+                const inputs = fieldset.querySelectorAll('input, select');
+                let allValid = true;
+                inputs.forEach(input => {
+                    if (!input.checkValidity()) {
+                        allValid = false;
+                    }
+                });
+
+                // Find the next button within the same fieldset
+                const nextButton = fieldset.querySelector('.next.action-button');
+                nextButton.disabled = !allValid;
+
+                // Optional: Update button style based on validity
+                if (!allValid) {
+                    nextButton.style.backgroundColor = '#ccc'; // Grey out the button
+                    nextButton.style.cursor = 'not-allowed';
+                } else {
+                    nextButton.style.backgroundColor = ''; // Revert to original style
+                    nextButton.style.cursor = '';
+                }
+            }
+
+            // Validate each fieldset individually
+            document.querySelectorAll('fieldset').forEach(fieldset => {
+                const inputs = fieldset.querySelectorAll('input, select');
+                inputs.forEach(input => {
+                    input.addEventListener('input', () => validateFieldset(fieldset));
+                });
+            });
+
+            // Initial validation on load
+            document.querySelectorAll('fieldset').forEach(fieldset => {
+                validateFieldset(fieldset);
+            });
+        });
+    </script>
+    <script src="{{ url_for('static', filename='js/getRates.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/step_form.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/saveFormData.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/loadFormData.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+</body>
+</html>

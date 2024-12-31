@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>EV Cost Results</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+</head>
+<body id="msresult">
+    <h1 class="fs-header">Results</h1>
+    <h2 class="fs-second-title">{{ message }}</h2>
+    <br><br>
+    <p><span class="fs-title">Charging hours needed daily per vehicle: </span>{{ charging_hours_needed_daily|whole }}</p>
+    <p><span class="fs-title">kW needed to accommodate vehicle operation per hour: </span>{{ hourly_usage_load_kw|decimal }}</p>
+    <p><span class="fs-title">kW allowed to charge per hour (limited to {{ total_number_chargers|whole }} chargers): </span>{{ usage_load_kw|decimal }}</p>
+    <p><span class="fs-title">Preferred Subscription Level: {{ subscription_level }} - {{ subscription_threshold }} kW with a fee of </span>{{ subscription_fee|currency }}</p>
+    <p><span class="fs-title">Recommended Subscription Level based on vehicle operation: </span> {{ usage_subscription_level }} - {{ usage_subscription_threshold }} kW with a fee of {{ usage_subscription_fee|currency }}</p>
+    <p><span class="fs-title">Basic Service Fee based with operational load of {{ usage_load_kw|decimal }} kW: </span>{{ usage_load_kw_basic_service_fee|currency }}</p>
+    <br><br>
+    <p><span class="fs-title">Weekly Operational EV costs for {{ num_vehicles }} vehicles driving {{ miles_driven_per_day }} miles/day for {{ charging_days_per_week }} days/week (consumption rates only, no fees): </span>{{ weekly_ev_cost|currency }}</p>
+    <p><span class="fs-title">Monthly Operational EV costs (consumption rates with fees included): </span>{{ monthly_ev_cost|currency }}</p>
+    <br><br>
+    <p><span class="fs-title">Monthly Operational ICE cost for {{ num_vehicles }} vehicles driving {{miles_driven_per_day}} miles/day for {{charging_days_per_week}} days/week with {{ice_efficiency}} MPG: </span>{{ monthly_ice_cost|currency }}</p>
+    <p><span class="fs-title">Monthly Operational gas cost for one ICE vehicle:: </span>{{ monthly_ice_cost_one_vehicle|currency }}</p>
+    <br><br>
+    <p><span class="fs-title">Monthly Savings: </span>{{ monthly_savings|currency }}</p>
+    <br>
+    <p><span class="fs-title">Max Load kW per hour: </span>{{ load_kw|decimal }}</p>
+    <p><span class="fs-title">Max Subscription Level: {{ max_subscription_level|whole }} - {{ max_subscription_threshold|whole }} kW with a subscription charge of {{ max_subscription_fee|currency }}</span></p>
+    <p><span class="fs-title">Basic Service Fee based with max load of {{ load_kw|decimal }} kW: </span>{{ max_load_kw_basic_service_fee|currency }}</p>
+    <br>
+    <h2 class="fs-second-title">GHG reductions as difference between gasoline and electric GHGs</h2>
+    <p><span class="fs-title">Miles Driven: </span>{{ ghg_reduction_result['Miles Driven']|whole }}</p>
+    <p><span class="fs-title">Gasoline Used (gallons): </span>{{ ghg_reduction_result['Gasoline Used (gallons)']|decimal }}</p>
+    <p><span class="fs-title">Electricity Used (kW): </span>{{ ghg_reduction_result['Electricity Used (kWh)']|decimal }}</p>
+    <br>
+    <p><span class="fs-title">Gasoline Fuel Usage GHGs (MT CO2): </span>{{ ghg_reduction_result['Gasoline Fuel Usage GHGs (MT CO2)']|decimal }}</p>
+    <p><span class="fs-title">Elec Fuel Usage GHGs (MT CO2): </span>{{ ghg_reduction_result['Electric Fuel Usage GHGs (MT CO2)']|decimal }}</p>
+    <p><span class="fs-title">Net GHG Reductions (MT CO2): </span>{{ ghg_reduction_result['Net GHG Reductions (MT CO2)']|decimal }}</p>
+    <br>
+    <p>
+        <a href="/" class="secondary-button" target="_top">Calculate Again</a>
+    </p>
+    
+</body>
+</html>
+

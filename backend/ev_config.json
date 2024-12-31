@@ -1,0 +1,259 @@
+{
+    "charger_types": [
+        {"charger_type_id": 1, "type": "Level 2", "rating_kW": 10, "efficiency": 0.95},
+        {"charger_type_id": 2, "type": "Level 2", "rating_kW": 11, "efficiency": 0.95},
+        {"charger_type_id": 3, "type": "Level 2", "rating_kW": 11.5, "efficiency": 0.95},
+        {"charger_type_id": 4, "type": "Level 2", "rating_kW": 11.52, "efficiency": 0.95},
+        {"charger_type_id": 5, "type": "Level 2", "rating_kW": 12, "efficiency": 0.95},
+        {"charger_type_id": 6, "type": "Level 2", "rating_kW": 15.4, "efficiency": 0.95},
+        {"charger_type_id": 7, "type": "Level 2", "rating_kW": 16.8, "efficiency": 0.95},
+        {"charger_type_id": 8, "type": "Level 2", "rating_kW": 19.2, "efficiency": 0.95},
+        {"charger_type_id": 9, "type": "DCFC", "rating_kW": 24, "efficiency": 0.9},
+        {"charger_type_id": 10, "type": "DCFC", "rating_kW": 25, "efficiency": 0.9},
+        {"charger_type_id": 11, "type": "DCFC", "rating_kW": 30, "efficiency": 0.9},
+        {"charger_type_id": 12, "type": "DCFC", "rating_kW": 50, "efficiency": 0.9},
+        {"charger_type_id": 13, "type": "DCFC", "rating_kW": 60, "efficiency": 0.9},
+        {"charger_type_id": 14, "type": "DCFC", "rating_kW": 62.5, "efficiency": 0.9},
+        {"charger_type_id": 15, "type": "DCFC", "rating_kW": 75, "efficiency": 0.9},
+        {"charger_type_id": 16, "type": "DCFC", "rating_kW": 90, "efficiency": 0.9},
+        {"charger_type_id": 17, "type": "DCFC", "rating_kW": 100, "efficiency": 0.9},
+        {"charger_type_id": 18, "type": "DCFC", "rating_kW": 120, "efficiency": 0.9},
+        {"charger_type_id": 19, "type": "DCFC", "rating_kW": 125, "efficiency": 0.9},
+        {"charger_type_id": 20, "type": "DCFC", "rating_kW": 150, "efficiency": 0.9},
+        {"charger_type_id": 21, "type": "DCFC", "rating_kW": 160, "efficiency": 0.9},
+        {"charger_type_id": 22, "type": "DCFC", "rating_kW": 161, "efficiency": 0.9},
+        {"charger_type_id": 23, "type": "DCFC", "rating_kW": 175, "efficiency": 0.9},
+        {"charger_type_id": 24, "type": "DCFC", "rating_kW": 180, "efficiency": 0.9},
+        {"charger_type_id": 25, "type": "DCFC", "rating_kW": 200, "efficiency": 0.9},
+        {"charger_type_id": 26, "type": "DCFC", "rating_kW": 350, "efficiency": 0.9},
+        {"charger_type_id": 27, "type": "DCFC", "rating_kW": 360, "efficiency": 0.9},
+        {"charger_type_id": 28, "type": "DCFC", "rating_kW": 450, "efficiency": 0.9}
+    ],
+
+    "subscription_fees": {
+        "10": {"level": 1, "fee": 30.68},
+        "20": {"level": 2, "fee": 61.36},
+        "30": {"level": 3, "fee": 92.04},
+        "40": {"level": 4, "fee": 122.72},
+        "50": {"level": 5, "fee": 153.4},
+        "60": {"level": 6, "fee": 184.08},
+        "70": {"level": 7, "fee": 214.76},
+        "80": {"level": 8, "fee": 245.44},
+        "90": {"level": 9, "fee": 276.12},
+        "100": {"level": 10, "fee": 306.8},
+        "110": {"level": 11, "fee": 337.48},
+        "120": {"level": 12, "fee": 368.16},
+        "130": {"level": 13, "fee": 398.84},
+        "140": {"level": 14, "fee": 429.52},
+        "150": {"level": 15, "fee": 460.2},
+        "175": {"level": 16, "fee": 536.91},
+        "200": {"level": 17, "fee": 613.62},
+        "225": {"level": 18, "fee": 690.33},
+        "250": {"level": 19, "fee": 767.04},
+        "275": {"level": 20, "fee": 843.75},
+        "300": {"level": 21, "fee": 920.46},
+        "325": {"level": 22, "fee": 997.17},
+        "350": {"level": 23, "fee": 1073.88},
+        "375": {"level": 24, "fee": 1150.59},
+        "400": {"level": 25, "fee": 1227.3},
+        "425": {"level": 26, "fee": 1304.01},
+        "450": {"level": 27, "fee": 1380.72},
+        "475": {"level": 28, "fee": 1457.43},
+        "500": {"level": 29, "fee": 1534.14},
+        "525": {"level": 30, "fee": 1610.85},
+        "550": {"level": 31, "fee": 1687.56},
+        "575": {"level": 32, "fee": 1764.27},
+        "600": {"level": 33, "fee": 1840.98},
+        "625": {"level": 34, "fee": 1917.69},
+        "650": {"level": 35, "fee": 1994.4},
+        "675": {"level": 36, "fee": 2071.11},
+        "700": {"level": 37, "fee": 2147.82},
+        "725": {"level": 38, "fee": 2224.53},
+        "750": {"level": 39, "fee": 2301.24},
+        "775": {"level": 40, "fee": 2377.95},
+        "800": {"level": 41, "fee": 2454.66},
+        "825": {"level": 42, "fee": 2531.37},
+        "850": {"level": 43, "fee": 2608.08},
+        "875": {"level": 44, "fee": 2684.79},
+        "900": {"level": 45, "fee": 2761.5},
+        "925": {"level": 46, "fee": 2838.21},
+        "950": {"level": 47, "fee": 2914.92},
+        "975": {"level": 48, "fee": 2991.63},
+        "1000": {"level": 49, "fee": 3068.34},
+        "1025": {"level": 50, "fee": 3145.05},
+        "1050": {"level": 51, "fee": 3221.76},
+        "1075": {"level": 52, "fee": 3298.47},
+        "1100": {"level": 53, "fee": 3375.18},
+        "1125": {"level": 54, "fee": 3451.89},
+        "1150": {"level": 55, "fee": 3528.6},
+        "1175": {"level": 56, "fee": 3605.31},
+        "1200": {"level": 57, "fee": 3682.02},
+        "1225": {"level": 58, "fee": 3758.73},
+        "1250": {"level": 59, "fee": 3835.44},
+        "1275": {"level": 60, "fee": 3912.15},
+        "1300": {"level": 61, "fee": 3988.86},
+        "1325": {"level": 62, "fee": 4065.57},
+        "1350": {"level": 63, "fee": 4142.28},
+        "1375": {"level": 64, "fee": 4218.99},
+        "1400": {"level": 65, "fee": 4295.7},
+        "1425": {"level": 66, "fee": 4372.41},
+        "1450": {"level": 67, "fee": 4449.12},
+        "1475": {"level": 68, "fee": 4525.83},
+        "1500": {"level": 69, "fee": 4602.54},
+        "1525": {"level": 70, "fee": 4679.25},
+        "1550": {"level": 71, "fee": 4755.96},
+        "1575": {"level": 72, "fee": 4832.67},
+        "1600": {"level": 73, "fee": 4909.38},
+        "1625": {"level": 74, "fee": 4986.09},
+        "1650": {"level": 75, "fee": 5062.8},
+        "1675": {"level": 76, "fee": 5139.51},
+        "1700": {"level": 77, "fee": 5216.22},
+        "1725": {"level": 78, "fee": 5292.93},
+        "1750": {"level": 79, "fee": 5369.64},
+        "1775": {"level": 80, "fee": 5446.35},
+        "1800": {"level": 81, "fee": 5523.06},
+        "1825": {"level": 82, "fee": 5599.77},
+        "1850": {"level": 83, "fee": 5676.48},
+        "1875": {"level": 84, "fee": 5753.19},
+        "1900": {"level": 85, "fee": 5829.9},
+        "1925": {"level": 86, "fee": 5906.61},
+        "1950": {"level": 87, "fee": 5983.32},
+        "1975": {"level": 88, "fee": 6060.03},
+        "2000": {"level": 89, "fee": 6136.74},
+        "2025": {"level": 90, "fee": 6213.45},
+        "2050": {"level": 91, "fee": 6290.16},
+        "2075": {"level": 92, "fee": 6366.87},
+        "2100": {"level": 93, "fee": 6443.58},
+        "2125": {"level": 94, "fee": 6520.29},
+        "2150": {"level": 95, "fee": 6597},
+        "2175": {"level": 96, "fee": 6673.71},
+        "2200": {"level": 97, "fee": 6750.42},
+        "2225": {"level": 98, "fee": 6827.13},
+        "2250": {"level": 99, "fee": 6903.84}
+    },
+
+    "time_of_use_rates": {
+        "Summer": {
+            "Weekday": {
+                "Super Off-Peak": {
+                    "hours": [0, 1, 2, 3, 4, 5, 10, 11, 12, 13],
+                    "rate": 0.14
+                },
+                "Off-Peak": {
+                    "hours": [6, 7, 8, 9, 14, 15, 21, 22, 23],
+                    "rate": 0.16
+                },
+                "On-Peak": {
+                    "hours": [16, 17, 18, 19, 20],
+                    "rate": 0.37
+                }
+            },
+            "Weekend": {
+                "Super Off-Peak": {
+                    "hours": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
+                    "rate": 0.14
+                },
+                "Off-Peak": {
+                    "hours": [14, 15, 21, 22, 23],
+                    "rate": 0.16
+                },
+                "On-Peak": {
+                    "hours": [16, 17, 18, 19, 20],
+                    "rate": 0.37
+                }
+            }
+        },
+        "Winter (March and April)": {
+            "Weekday": {
+                "Super Off-Peak": {
+                    "hours": [0, 1, 2, 3, 4, 5],
+                    "rate": 0.14
+                },
+                "Off-Peak": {
+                    "hours": [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 21, 22, 23],
+                    "rate": 0.15
+                },
+                "On-Peak": {
+                    "hours": [16, 17, 18, 19, 20],
+                    "rate": 0.35
+                }
+            },
+            "Weekend": {
+                "Super Off-Peak": {
+                    "hours": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
+                    "rate": 0.14
+                },
+                "Off-Peak": {
+                    "hours": [14, 15, 21, 22, 23],
+                    "rate": 0.15
+                },
+                "On-Peak": {
+                    "hours": [16, 17, 18, 19, 20],
+                    "rate": 0.35
+                }
+            }
+        },
+        "Winter (excluding March and April)": {
+            "Weekday": {
+                "Super Off-Peak": {
+                    "hours": [0, 1, 2, 3, 4, 5],
+                    "rate": 0.14
+                },
+                "Off-Peak": {
+                    "hours": [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 21, 22, 23],
+                    "rate": 0.15
+                },
+                "On-Peak": {
+                    "hours": [16, 17, 18, 19, 20],
+                    "rate": 0.35
+                }
+            },
+            "Weekend": {
+                "Super Off-Peak": {
+                    "hours": [0, 1, 2, 3, 4, 5],
+                    "rate": 0.14
+                },
+                "Off-Peak": {
+                    "hours": [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 21, 22, 23],
+                    "rate": 0.15
+                },
+                "On-Peak": {
+                    "hours": [16, 17, 18, 19, 20],
+                    "rate": 0.35
+                }
+            }
+        }
+    },
+
+    "ghg_variables": {
+        "gas_mj_per_gal": 115.83,
+        "gas_unadjusted_ci": 99.44,
+        "elec_mj_per_gal": 3.6,
+        "elec_unadjusted_ci": 82.92
+    },
+    
+    "ice_variables": {
+        "gas_price": 4.65,  
+        "ice_efficiency": 20  
+    },
+
+    "vehicle_data": {
+        "Class 2: Van": {"mpg": 20, "kWh_per_100_miles": 187.67, "vehicle_efficiency": 1.8767},
+        "Class 2: Pick-up Truck": {"mpg": 18, "kWh_per_100_miles": 209.72, "vehicle_efficiency": 2.0972},
+        "Class 3: Walk In": {"mpg": 12, "kWh_per_100_miles": 281.33, "vehicle_efficiency": 2.8133},
+        "Class 3: Truck": {"mpg": 8, "kWh_per_100_miles": 418.75, "vehicle_efficiency": 4.1875},
+        "Class 4: Conventional Van": {"mpg": 14, "kWh_per_100_miles": 240.71, "vehicle_efficiency": 2.4071},
+        "Class 4: School Bus": {"mpg": 6, "kWh_per_100_miles": 561.67, "vehicle_efficiency": 5.6167},
+        "Class 4: Shuttle Bus": {"mpg": 4, "kWh_per_100_miles": 842.5, "vehicle_efficiency": 8.425},
+        "Class 5: Cab Chassis": {"mpg": 10, "kWh_per_100_miles": 336.75, "vehicle_efficiency": 3.3675},
+        "Class 6: Box Truck": {"mpg": 8, "kWh_per_100_miles": 418.75, "vehicle_efficiency": 4.1875},
+        "Class 6: School Bus": {"mpg": 5, "kWh_per_100_miles": 673.5, "vehicle_efficiency": 6.735},
+        "Class 7: School Bus": {"mpg": 4, "kWh_per_100_miles": 842.5, "vehicle_efficiency": 8.425},
+        "Class 8: City Transit Bus (35 ft)": {"mpg": 3, "kWh_per_100_miles": 1125.83, "vehicle_efficiency": 11.2583},
+        "Class 8: City Transit Bus (40 ft)": {"mpg": 3, "kWh_per_100_miles": 1125.83, "vehicle_efficiency": 11.2583},
+        "Class 8: City Transit Bus (60 ft)": {"mpg": 3, "kWh_per_100_miles": 1125.83, "vehicle_efficiency": 11.2583},
+        "Class 8: Truck": {"mpg": 6, "kWh_per_100_miles": 561.67, "vehicle_efficiency": 5.6167},
+        "Class 8: Box Truck": {"mpg": 6, "kWh_per_100_miles": 561.67, "vehicle_efficiency": 5.6167}
+    }
+
+}
